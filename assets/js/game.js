@@ -50,11 +50,3 @@ window.onload = draw();
 //     var pattern = new RegExp(/[a-zåäö ]/i);
 //     return pattern.test(value);
 //  }
-
-
-
-
-
-
-
-
