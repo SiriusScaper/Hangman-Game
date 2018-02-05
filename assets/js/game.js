@@ -35,15 +35,15 @@ let randWord = [];
 //Draw rect using a for loop and assign x,y values to variables depending on locations
 
 
-var canvas;
-var cntx;
+var canvas = document.getElementById('thecanvas');
+var ctx = canvas.getContext('2d');
 
-function draw() {
-    canvas = document.getElementById('#gameCanvas');
-    cntx = canvas.getContext('2d', { alpha: false });
+setup = function() {
+    canvas.width = 800;
+    canvas.height = 600;
 };
 
-window.onload = draw();
+setup();
 
 // function testInput(event) {
 //     var value = String.fromCharCode(event.which);
