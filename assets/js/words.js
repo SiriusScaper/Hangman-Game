@@ -1,12 +1,5 @@
 
 /*
-    deathmatch
-    dungeon crawl
-
-    expansion pack
-    experience point
-
-    fatality
     fighting game
     first-person shooter
     flight sim

@@ -3,29 +3,29 @@
 let gamerTerms = [
     'achievement',
     'action-adventure',
-    'actions per minute',
-    'adventure game',
-    'arcade game',
+    'arcade',
     'avatar',
     'balance',
-    'bonus stage',
+    'bonus-stage',
     'boss',
     'combo',
     'console',
     'coop',
-    'cover system',
     'cross-platform',
-    'crowd control',
+    'crowd-control',
     'cutscene',
+    'deathmatch',
+    'experience',
+    'fatality',
 ];
 
-let win = 0;
-let loss = 0;
 let highScore = [];
 let wrongLetter = [];
 let correctLetter = [];
 let underScore = [];
 let score = 0;
+let gamesWon = 0;
+let guesses = 10;
 let randomNum = Math.floor(Math.random() * gamerTerms.length)
 let randomWord = gamerTerms[randomNum]
 
@@ -40,7 +40,8 @@ let underScoreGen = () => {
     return underScore;
 }
 
-console.log(underScoreGen())
+
+//Reset win function
 
 
 //===================================
@@ -51,33 +52,19 @@ document.addEventListener('keydown', (event) => {
     //Check if guess is correct
     if (randomWord.indexOf(keyname) > -1) {
         correctLetter.push(keyname);
-        console.log(correctLetter);
         underScore[randomWord.indexOf(keyname)] = keyname;
-        if (underScore.join('') == randomWord) {
+        console.log(underScore);
+        if (correctLetter.join('') == randomWord) {
             score++
+            randomWord = randomNum
+            console.log('You win', score);
         }
     } else {
         wrongLetter.push(keyname)
-        console.log(wrongLetter);
+        guesses--
+        console.log(guesses);
     }
-
-console.log(score);
-    
-    // if(randomWord.indexOf(keyname) > -1) {
-    //     correctLetter.push(keyname);
-    //     underScore[randomWord.indexOf(keyname)] = keyname;
-    //     console.log(keyname);
-    //     if (underScore.join('') == randomWord) {
-    //         altert('You win')
-    //     } 
-    // } else {
-    //     wrngLttr.push(keyname)
-    //     console.log(wrngLttr);
-    // }
-    // keysPressed.push(keyname);
-    // let keyGuess = keysPressed.join('')
-    // console.log(keyGuess);
-  });
+});
 
 
 //===================================
@@ -144,7 +131,7 @@ setup = function() {
     canvas.height = 600;
 };
 
-setup();
+setup()
 
 //Draw rect using a for loop and assign x,y values to variables depending on locations
 
