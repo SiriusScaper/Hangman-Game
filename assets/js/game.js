@@ -18,23 +18,18 @@ let gamerTerms = [
     'crowd control',
     'cutscene',
 ];
+
 let win = 0;
 let loss = 0;
 let highScore = [];
-let wrngLttr = [];
-let keysPressed = [];
+let wrongLetter = [];
+let correctLetter = [];
 let underScore = [];
 let score = 0;
-let randomWord;
+let randomNum = Math.floor(Math.random() * gamerTerms.length)
+let randomWord = gamerTerms[randomNum]
 
-//===================================
-// Get random word function
-//===================================
-
-randomNum = Math.floor(Math.random() * gamerTerms.length)
-randomWord = gamerTerms[randomNum]
-console.log(randomWord)
-
+console.log(randomWord);
 //===================================
 //Underscores === length of word
 //===================================
@@ -49,27 +44,52 @@ console.log(underScoreGen())
 
 
 //===================================
-// Listener for keydown and add to keyPressed Array
+// Listener for keydown
 //===================================
 document.addEventListener('keydown', (event) => {
-    const keyname = event.key;
-    keysPressed.push(keyname)
-    console.log(keysPressed);
+    keyname = event.key;
+    //Check if guess is correct
+    if (randomWord.indexOf(keyname) > -1) {
+        correctLetter.push(keyname);
+        console.log(correctLetter);
+        underScore[randomWord.indexOf(keyname)] = keyname;
+        if (underScore.join('') == randomWord) {
+            score++
+        }
+    } else {
+        wrongLetter.push(keyname)
+        console.log(wrongLetter);
+    }
+
+console.log(score);
+    
+    // if(randomWord.indexOf(keyname) > -1) {
+    //     correctLetter.push(keyname);
+    //     underScore[randomWord.indexOf(keyname)] = keyname;
+    //     console.log(keyname);
+    //     if (underScore.join('') == randomWord) {
+    //         altert('You win')
+    //     } 
+    // } else {
+    //     wrngLttr.push(keyname)
+    //     console.log(wrngLttr);
+    // }
+    // keysPressed.push(keyname);
+    // let keyGuess = keysPressed.join('')
+    // console.log(keyGuess);
   });
 
+
 //===================================
-//Compare randomWord to keyspressed
+//Compare randomWord to keyspressed array
 //===================================
-
-
-
 
 /*
 2. Choose a theme for your game! In the demo, we picked an 80s theme: 80s questions, 80s sound and an 80s aesthetic. You can choose any subject for your theme, though, so be creative!
 
 3. Use key events to listen for the letters that your players will type.
 
-4. Display the following on the page:
+4. Display the following on the page: 
 
 5. Press any key to get started!
 
