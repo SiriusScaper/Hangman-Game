@@ -2,15 +2,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-flow: row wrap;
-    align-content: flex-end;
+    flex-flow: column wrap;
     background-image: url(../imgs/cpo-background.jpg);
 }
 
 h1 {
     font-family: 'Press Start 2P', cursive;
     color: white;
-    flex: 2 0 0;
 }
 
 canvas {
