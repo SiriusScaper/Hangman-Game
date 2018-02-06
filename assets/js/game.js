@@ -26,14 +26,14 @@ let underScore = [];
 let score = 0;
 let gamesWon = 0;
 let guesses = 10;
-let randomNum = Math.floor(Math.random() * gamerTerms.length)
-let randomWord = gamerTerms[randomNum]
+let randomWord;
 
-console.log(randomWord);
 //===================================
 //Underscores === length of word
 //===================================
-let underScoreGen = () => {
+function startGame() {
+    randomWord = gamerTerms[Math.floor(Math.random() * gamerTerms.length)];
+    underscore = [];
     for(let i = 0; i < randomWord.length; i++){
         underScore.push('_')
     }
@@ -41,31 +41,41 @@ let underScoreGen = () => {
 }
 
 
-//Reset win function
+winLose = () => {
+    if (score === randomWord.length){
+        console.log('You win');
+    } else if (guesses === 0) {
+        console.log('You lose');
+    }
+}
 
 
 //===================================
 // Listener for keydown
 //===================================
-document.addEventListener('keydown', (event) => {
-    keyname = event.key;
+document.onkeyup = (event) => {
+    keyLetter = event.key;
     //Check if guess is correct
-    if (randomWord.indexOf(keyname) > -1) {
-        correctLetter.push(keyname);
-        underScore[randomWord.indexOf(keyname)] = keyname;
-        console.log(underScore);
-        if (correctLetter.join('') == randomWord) {
-            score++
-            randomWord = randomNum
-            console.log('You win', score);
-        }
+    if (randomWord.indexOf(keyLetter) > -1) {
+        for (let i = 0; i < randomWord.length; i++) {
+            if(randomWord[i] === keyLetter){
+                underScore[i] = keyLetter;
+                console.log(underScore);
+                score++
+                winLose()
+            }
+        };
     } else {
-        wrongLetter.push(keyname)
+        wrongLetter.push(keyLetter)
         guesses--
-        console.log(guesses);
+        console.log(wrongLetter);
+        winLose()
     }
-});
-
+};
+startGame()
+console.log(randomWord);
+console.log(underScore);
+console.log(score);
 
 //===================================
 //Compare randomWord to keyspressed array
